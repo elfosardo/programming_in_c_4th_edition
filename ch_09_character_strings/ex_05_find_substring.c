@@ -20,7 +20,6 @@ int findString(char mystring[], char findthis[]) {
                 else
                     break;
                 if ( findthis[v] == '\0' ) {
-                    printf("String found\n");
                     return i;
                 }
             }
@@ -28,7 +27,6 @@ int findString(char mystring[], char findthis[]) {
         ++i;
     }
 
-    printf("String not found\n");
     return -1;
 }
 
