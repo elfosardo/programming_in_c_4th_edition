@@ -15,19 +15,19 @@ int strLength(char anystring[]) {
 // insert string in another string
 
 void insertString(char source[], char insertthis[], int position) {
-    int i = 0;
-    int length_str1 = strLength(source);
-    int length_str2 = strLength(insertthis);
+    int j, length_insert, length_source;
 
-    int new_length = length_str1 + length_str2;
+    length_source = strLength(source);
+    length_insert = strLength(insertthis);
 
-    while ( i < (length_str2) ) {
-        source[position + length_str2 + i] = source[position + i];
-        source[position + i] = insertthis[i];
-        ++i;
-    }
+    if ( position > length_source )
+        return;
 
-    source[new_length] = '\0';
+    for ( j = length_source; j >= position; --j )
+        source[length_insert + j] = source[j];
+
+    for ( j = 0; j < length_insert; ++j )
+        source[j + position] = insertthis[j];
 }
 
 int main(void) {

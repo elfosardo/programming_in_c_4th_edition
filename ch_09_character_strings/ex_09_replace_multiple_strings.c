@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 // length of a string
 
@@ -85,28 +86,47 @@ int findString(char mystring[], char findthis[]) {
 // determine if a character exists in a string
 // finding a substring in a string
 
-void replaceString(char source[], char findthis[], char replace[]) {
+bool replaceString(char source[], char findthis[], char replace[]) {
     int index = findString(source, findthis);
     int length_findthis;
 
     if ( index != -1 ) {
         length_findthis = strLength(findthis);
-        
-        printf("%s\n", source);
+
         removeString(source, index, length_findthis);
-        printf("%s\n", source);
+
         insertString(source, replace, index);
+
+        return true;
     }
+    else
+        return false;
 }
 
 int main(void) {
-    char source[] = "this is 1";
+    bool stillFound;
 
-    printf("Original text: %s\n", source);
+    char source1[] = "this is 1";
+    char source2[] = "this is 1";
+    char source3[] = "this is 1";
 
-    replaceString(source, " is", " one is");
+    printf("Original text: %s\n", source1);
+    replaceString(source1, "1", "one");
+    printf("New text: %s\n\n", source1);
 
-    printf("New text: %s\n", source);
+    printf("Original text: %s\n", source2);
+    do {
+        stillFound = replaceString(source2, " ", "");
+    } while ( stillFound );
+
+    printf("Remove blank spaces: %s\n\n", source2);
+
+    printf("Original text: %s\n", source3);
+    do {
+        stillFound = replaceString(source3, "i", "a");
+    } while ( stillFound );
+
+    printf("Convert i to a: %s\n", source3);
 
     return 0;
 }
